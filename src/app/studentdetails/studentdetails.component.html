@@ -1,0 +1,290 @@
+<div class="p-10">
+    <form class="w-full bg-gray-200 md:w-1/2 lg:w-1/4 mx-auto border border-black rounded-md p-8" action=""
+        [formGroup]="studentform">
+        <h1 class="text-center text-2xl font-bold">Student Form</h1>
+        <div>
+            <label for="name">Name : </label>
+            <div class="md:flex md:gap-x-3" formGroupName="name">
+                <div class="mt-2">
+
+                    <label for="name">First Name : </label>
+                    <input class="border border-black rounded-md w-full" type="text" formControlName="first">
+
+                    <ng-container *ngIf="first?.invalid&&(first?.dirty || first?.touched)">
+                        <small class="text-red-500" *ngIf="first?.errors?.['required']">
+                            * This Field is required
+                        </small>
+
+                        <small class="text-red-500" *ngIf="first?.errors?.['pattern']">
+                            Please Enter Valid First Name
+                        </small>
+
+                        <small class="text-red-500" *ngIf="first?.errors?.['minlength']">
+                            First Name must be at least 3 characters long
+                        </small>
+                    </ng-container>
+
+                </div>
+
+                <div class="mt-2">
+
+                    <label for="name">Middle Name : </label>
+                    <input class="border border-black rounded-md w-full" type="text" formControlName="middle">
+
+                    <ng-container *ngIf="middle?.invalid&&(middle?.dirty || middle?.touched)">
+                        <small class="text-red-500" *ngIf="middle?.errors?.['required']">
+                            * This Field is required
+                        </small>
+
+                        <small class="text-red-500" *ngIf="middle?.errors?.['pattern']">
+                            Please Enter Valid Middle Name
+                        </small>
+
+                        <small class="text-red-500" *ngIf="middle?.errors?.['minlength']">
+                            Middle Name must be at least 3 characters long
+                        </small>
+                    </ng-container>
+
+                </div>
+
+                <div class="mt-2">
+
+                    <label for="name">Last Name : </label>
+                    <input class="border border-black rounded-md w-full" type="text" formControlName="last">
+
+                    <ng-container *ngIf="last?.invalid&&(last?.dirty || last?.touched)">
+                        <small class="text-red-500" *ngIf="last?.errors?.['required']">
+                            * This Field is required
+                        </small>
+
+                        <small class="text-red-500" *ngIf="last?.errors?.['pattern']">
+                            Please Enter Valid Last Name
+                        </small>
+
+                        <small class="text-red-500" *ngIf="last?.errors?.['minlength']">
+                            Last Name must be at least 3 characters long
+                        </small>
+                    </ng-container>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mt-2">
+
+            <label for="email">Email : </label>
+            <input class="border border-black rounded-md w-full" type="email" formControlName="email">
+
+            <ng-container *ngIf="email?.invalid&&(email?.dirty || email?.touched)">
+                <small class="text-red-500" *ngIf="email?.errors?.['required']">
+                    * This Field is required
+                </small>
+
+                <small class="text-red-500" *ngIf="email?.errors?.['pattern']">
+                    Please Enter Valid Email
+                </small>
+
+                <small class="text-red-500" *ngIf="email?.errors?.['minlength']">
+                    Email must be at least 10 characters long
+                </small>
+            </ng-container>
+
+        </div>
+
+        <div class="block md:flex md:gap-x-3">
+            <div class="mt-2">
+
+                <label for="dob">Date Of Birth : </label>
+                <input class="border border-black rounded-md w-full" type="date" formControlName="dob">
+
+                <ng-container *ngIf="dob?.invalid&&(dob?.dirty || dob?.touched)">
+                    <small class="text-red-500" *ngIf="dob?.errors?.['required']">
+                        * This Field is required
+                    </small>
+
+                    <small class="text-red-500" *ngIf="dob?.errors?.['invalid']">
+                        Age Should be atleast 18 or above
+                    </small>
+                </ng-container>
+            </div>
+            <div class="mt-2">
+
+                <label for="age">Age : </label>
+                <input [disabled]="true" value="{{calculateage()}}" class="border border-black rounded-md w-full"
+                    type="text" ng-disabled formControlName="age">
+            </div>
+        </div>
+
+
+        <div class="mt-2 block md:flex md:gap-x-3">
+            <label for="gender">Gender : </label>
+            <ng-container *ngIf="gender?.invalid&&(gender?.dirty || gender?.touched)">
+                <small class="text-red-500" *ngIf="gender?.errors?.['required']">
+                    * This Field is required
+                </small>
+            </ng-container>
+            <div>
+                <input type="radio" id="male" value="male" formControlName="gender">
+                <label class="ml-3" for="male">Male</label>
+            </div>
+
+            <div>
+                <input type="radio" id="female" value="female" formControlName="gender">
+                <label class="ml-3" for="female">Female</label>
+            </div>
+
+            <div>
+                <input type="radio" id="other" value="other" formControlName="gender">
+                <label class="ml-3" for="other">Other</label>
+            </div>
+
+        </div>
+
+        <div class="mt-2" formGroupName="address">
+
+            <label for="address">Address : </label>
+
+            <div>
+
+                <div class="flex gap-x-3">
+                    <div class="mt-2">
+                        <label for="flat">Flat No : </label>
+                        <input class="border border-black rounded-md w-full" type="text" formControlName="flat">
+                        <ng-container *ngIf="flat?.invalid&&(flat?.dirty || flat?.touched)">
+                            <small class="text-red-500" *ngIf="flat?.errors?.['required']">
+                                * This Field is required
+                            </small>
+
+                            <small class="text-red-500" *ngIf="flat?.errors?.['pattern']">
+                                Please Enter Valid Flat No
+                            </small>
+                        </ng-container>
+                    </div>
+                    <div class="mt-2">
+                        <label for="building">Building : </label>
+                        <input class="border border-black rounded-md w-full" type="text" formControlName="building">
+
+                        <ng-container *ngIf="building?.invalid&&(building?.dirty || building?.touched)">
+                            <small class="text-red-500" *ngIf="building?.errors?.['required']">
+                                * This Field is required
+                            </small>
+
+                            <small class="text-red-500" *ngIf="building?.errors?.['pattern']">
+                                Please Enter Valid Building
+                            </small>
+
+                            <small class="text-red-500" *ngIf="building?.errors?.['minlength']">
+                                Building must be at least 3 characters long
+                            </small>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div class="md:flex md:gap-x-3">
+                    <div class="mt-2">
+                        <label for="city">City : </label>
+                        <input class="border border-black rounded-md w-full" type="text" formControlName="city">
+
+                        <ng-container *ngIf="city?.invalid&&(city?.dirty || city?.touched)">
+                            <small class="text-red-500" *ngIf="city?.errors?.['required']">
+                                * This Field is required
+                            </small>
+
+                            <small class="text-red-500" *ngIf="city?.errors?.['pattern']">
+                                Please Enter Valid City
+                            </small>
+
+                            <small class="text-red-500" *ngIf="city?.errors?.['minlength']">
+                                City must be at least 3 characters long
+                            </small>
+                        </ng-container>
+                    </div>
+
+                    <div class="mt-2">
+                        <label for="pin">Pin : </label>
+                        <input class="border border-black rounded-md w-full" type="text" formControlName="pin">
+
+                        <ng-container *ngIf="pin?.invalid&&(pin?.dirty || pin?.touched)">
+                            <small class="text-red-500" *ngIf="pin?.errors?.['required']">
+                                * This Field is required
+                            </small>
+
+                            <small class="text-red-500" *ngIf="pin?.errors?.['pattern']">
+                                Please Enter Valid Pin
+                            </small>
+                        </ng-container>
+
+                    </div>
+
+                    <div class="mt-2">
+                        <label for="state">State : </label>
+                        <input class="border border-black rounded-md w-full" type="text" formControlName="state">
+
+                        <ng-container *ngIf="state?.invalid&&(state?.dirty || state?.touched)">
+                            <small class="text-red-500" *ngIf="state?.errors?.['required']">
+                                * This Field is required
+                            </small>
+
+                            <small class="text-red-500" *ngIf="state?.errors?.['pattern']">
+                                Please Enter Valid State
+                            </small>
+
+                            <small class="text-red-500" *ngIf="state?.errors?.['minlength']">
+                                State must be at least 5 characters long
+                            </small>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <input class="mt-4 w-full bg-blue-500 hover:bg-blue-600 p-2 rounded-md disabled:bg-blue-300 cursor-pointer"
+                (click)="newdata()" [disabled]="studentform.invalid" type="button" value="{{title}}">
+        </div>
+
+    </form>
+</div>
+
+<table class="mx-auto">
+    <caption></caption>
+    <tr>
+        <th rowspan="2">ID</th>
+        <th colspan="3">Name</th>
+        <th rowspan="2">Email</th>
+        <th rowspan="2">Date Of Birth</th>
+        <th rowspan="2">Age</th>
+        <th rowspan="2">Gender</th>
+        <th colspan="5">Address</th>
+    </tr>
+    <tr>
+        <th>First</th>
+        <th>Middle</th>
+        <th>Last</th>
+        <th>Flat</th>
+        <th>Building</th>
+        <th>City</th>
+        <th>Pin</th>
+        <th>State</th>
+    </tr>
+    <tr *ngFor="let item of data">
+        <td> {{item.id}} </td>
+        <td> {{item.name.first}} </td>
+        <td> {{item.name.middle}} </td>
+        <td> {{item.name.last}} </td>
+        <td> {{item.email}} </td>
+        <td> {{item.dob}} </td>
+        <td> {{item.age}} </td>
+        <td> {{item.gender}} </td>
+        <td> {{item.address.flat}} </td>
+        <td> {{item.address.building}} </td>
+        <td> {{item.address.city}} </td>
+        <td> {{item.address.pin}} </td>
+        <td> {{item.address.state}} </td>
+        <td> <input class="bg-red-500 hover:bg-red-600 p-2 cursor-pointer rounded-md" type="button" (click)="del(item)"
+                value="Delete"> </td>
+        <td> <input class="bg-yellow-400 hover:bg-yellow-500 p-2 cursor-pointer rounded-md" type="button"
+                (click)="upd(item)" value="Update"> </td>
+    </tr>
+</table>
